@@ -13,9 +13,9 @@ import Ki.Unlifted qualified as Ki
 import Relude
 import TurtleProtocol.Message (Request, Response)
 
-data ResponseHandler a where
-  IgnoreResponse :: ResponseHandler ()
-  AwaitResponse :: (Response -> Maybe a) -> ResponseHandler a
+data ResponseHandler response
+  = (response ~ ()) => IgnoreResponse
+  | AwaitResponse (Response -> Maybe response)
 
 data Connection = Connection
   { remainderReference :: IORef ByteString,
