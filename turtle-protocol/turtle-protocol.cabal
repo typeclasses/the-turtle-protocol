@@ -24,7 +24,6 @@ common base
       , filepath
       , ki-unlifted
       , linear
-      , network
       , relude
       , streaming-commons
       , stm
