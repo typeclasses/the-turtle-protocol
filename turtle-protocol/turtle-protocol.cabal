@@ -1,0 +1,53 @@
+cabal-version: 3.0
+
+name: turtle-protocol
+version: 0
+
+common base
+    default-language: GHC2021
+    ghc-options: -Wall
+    default-extensions:
+        ApplicativeDo
+        BlockArguments
+        DeriveAnyClass
+        DerivingStrategies
+        DerivingVia
+        GADTs
+        LambdaCase
+        NoImplicitPrelude
+        OverloadedStrings
+    build-depends:
+      , base
+      , binary
+      , containers
+      , envparse
+      , filepath
+      , ki-unlifted
+      , linear
+      , network
+      , relude
+      , streaming-commons
+      , stm
+      , unliftio-core
+      , xturtle
+
+library
+    import: base
+    hs-source-dirs: library
+    exposed-modules:
+        TurtleProtocol.Action
+        TurtleProtocol.Client
+        TurtleProtocol.Message
+        TurtleProtocol.Socket
+
+executable turtle-server
+    import: base
+    hs-source-dirs: server
+    main-is: Main.hs
+    build-depends: turtle-protocol
+
+executable turtle-demo
+    import: base
+    hs-source-dirs: demo
+    main-is: Main.hs
+    build-depends: turtle-protocol
